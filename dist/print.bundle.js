@@ -1,1 +1,1 @@
-(()=>{"use strict"})();
+"use strict";(self.webpackChunkto_do_list=self.webpackChunkto_do_list||[]).push([[740],{845:(s,t,e)=>{}},s=>{s(s.s=845)}]);
