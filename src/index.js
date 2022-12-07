@@ -11,17 +11,37 @@ class Task {
   }
 }
 
-const tasks = [];
+let tasks = [];
 
 function addTasks(description, completed, index) {
   const demoTask = new Task(description, completed, index);
   tasks.push(demoTask);
 }
 
+function sortArray(array) {
+  let temp = 0;
+  for (let i = 0; i < array.length; i += 1) {
+    for (let j = i; j < array.length; j += 1) {
+      if (array[j].index < array[i].index) {
+        temp = array[j];
+        array[j] = array[i];
+        array[i] = temp;
+      }
+    }
+  }
+  tasks = array;
+  return tasks;
+}
+
 addTasks('Demo task 1', false, 1);
+addTasks('Demo task 3', false, 3);
 addTasks('Demo task 2', false, 2);
+addTasks('Demo task 10', false, 10);
+addTasks('Demo task 7', false, 7);
+addTasks('Demo task 6', false, 6);
 
 function displaytasks() {
+  sortArray(tasks);
   let taskgenerator = '';
   tasks.forEach((task) => {
     taskgenerator += `<div class="task">
