@@ -4,18 +4,18 @@
 /* eslint-disable eqeqeq */
 import './style.css';
 import { addTasks, deleteTask } from './functions.js';
-import { checkBox } from './checkbox.js';
+import checkBox from './checkbox.js';
 
 const list = document.querySelector('.list-container');
 const form = document.querySelector('#form');
-var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 class Task {
-  constructor(description = '', completed = false, index = 0, chbox='') {
+  constructor(description = '', completed = false, index = 0, chbox = '') {
     this.description = description;
     this.completed = completed;
     this.index = index;
-    this.chbox=chbox;
+    this.chbox = chbox;
   }
 }
 
@@ -82,20 +82,19 @@ function displaytasks() {
     t.addEventListener('mousedown', () => deleteTask(t.id));
   });
   const chbox = document.querySelectorAll('.checkbox');
-    chbox.forEach((box) =>{
-      box.addEventListener('change', () => {
-        checkBox(box);
-        const ch = box.parentElement.children[1];
-        if(box.checked){
-          ch.style.textDecoration = 'line-through';
-          ch.style.opacity = '0.5';
-        }
-        else{
-          ch.style.textDecoration = 'none';
-          ch.style.opacity = '1';
-        }
-      })
-    })
+  chbox.forEach((box) => {
+    box.addEventListener('change', () => {
+      checkBox(box);
+      const ch = box.parentElement.children[1];
+      if (box.checked) {
+        ch.style.textDecoration = 'line-through';
+        ch.style.opacity = '0.5';
+      } else {
+        ch.style.textDecoration = 'none';
+        ch.style.opacity = '1';
+      }
+    });
+  });
 }
 
 displaytasks();
