@@ -14,7 +14,6 @@ function reAssingIndex() {
   for (let j = 0; j < tasks.length; j++) {
     tasks[j].index = j;
   }
-  return tasks;
 }
 
 function deleteTask(index) {
@@ -23,7 +22,7 @@ function deleteTask(index) {
     i++;
   }
   tasks.splice(i, 1);
-  reAssingIndex(tasks);
+  reAssingIndex();
   localStorage.setItem('tasks', JSON.stringify(tasks));
   displaytasks();
 }

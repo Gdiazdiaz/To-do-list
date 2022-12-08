@@ -8,18 +8,18 @@ body {
   display: flex;
   flex-direction: column;
   top: 10px;
-  left:10px;
+  left: 10px;
   right: 10px;
   bottom: 10px;
   background-color: #fff;
-  margin: 0px;
+  margin: 0;
 }
 
 .menu-container {
   display: flex;
   justify-content: space-between;
-  margin: 0px;
-  padding: 0px 10px;
+  margin: 0;
+  padding: 0 10px;
   border-bottom: #d3d3d3 solid 1px;
 }
 
@@ -44,14 +44,14 @@ body {
 #form {
   display: flex;
   justify-content: space-between;
-  margin: 0px 10px;
+  margin: 0 10px;
 }
 
 .add-task {
   border: none;
   font-style: italic;
   font-size: 15px;
-  outline:none;
+  outline: none;
 }
 
 .submit-button {
@@ -69,10 +69,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .task {
   display: flex;
   justify-content: space-between;
-  padding: 0px 10px;
+  padding: 0 10px;
   align-items: center;
   border-bottom: #d3d3d3 solid 1px;
 }
@@ -84,9 +85,8 @@ body {
   height: 45px;
 }
 
-.content{
+.content {
   border: none;
-  text-decoration: none;
 }
 
 .clear-btn {
@@ -108,13 +108,4 @@ body {
   width: 25px;
   opacity: 0.6;
   display: none;
-}
-
-.false {
-  text-decoration: none;
-}
-
-.true {
-  text-decoration: line-through;
-  opacity: 0.5;
 }
