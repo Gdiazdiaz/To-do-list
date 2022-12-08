@@ -2,13 +2,14 @@
 /* eslint-disable import/no-mutable-exports */
 /* eslint-disable no-plusplus */
 /* eslint-disable eqeqeq */
+/* eslint-disable no-var */
 import './style.css';
 import { addTasks, deleteTask } from './functions.js';
 import checkBox from './checkbox.js';
 
 const list = document.querySelector('.list-container');
 const form = document.querySelector('#form');
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 class Task {
   constructor(description = '', completed = false, index = 0, chbox = '') {
