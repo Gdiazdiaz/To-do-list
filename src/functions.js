@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-plusplus */
+/* eslint-disable eqeqeq */
 import { Task, tasks, displaytasks } from './index.js';
 
 function addTasks(description, completed, index) {

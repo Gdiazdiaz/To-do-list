@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/no-mutable-exports */
 /* eslint-disable no-plusplus */
+/* eslint-disable eqeqeq */
 import './style.css';
 import { addTasks, deleteTask } from './functions.js';
 
