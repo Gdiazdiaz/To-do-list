@@ -1,6 +1,8 @@
-// import _ from 'lodash';
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/no-mutable-exports */
+/* eslint-disable no-plusplus */
 import './style.css';
-import {addTasks, deleteTask} from './functions.js';
+import { addTasks, deleteTask } from './functions.js';
 
 const list = document.querySelector('.list-container');
 const form = document.querySelector('#form');
@@ -16,29 +18,29 @@ class Task {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  let desc = document.querySelector('.add-task');
-  let comp = false;
-  let ind = tasks.length;
-  addTasks(desc.value,comp,ind);
-  desc.value='';
-})
+  const desc = document.querySelector('.add-task');
+  const comp = false;
+  const ind = tasks.length;
+  addTasks(desc.value, comp, ind);
+  desc.value = '';
+});
 
-function sortArray(array){
+function sortArray(array) {
   let temp = 0;
-for (let i = 0; i < array.length; i++) {
-  for (let j = i; j < array.length; j++) {
-    if (array[j].index < array[i].index) {
-      temp = array[j];
-      array[j] = array[i];
-      array[i] = temp;
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i; j < array.length; j++) {
+      if (array[j].index < array[i].index) {
+        temp = array[j];
+        array[j] = array[i];
+        array[i] = temp;
+      }
     }
   }
-}
-tasks=array;
-return tasks;
+  tasks = array;
+  return tasks;
 }
 
-function displaytasks(){
+function displaytasks() {
   sortArray(tasks);
   let taskgenerator = '';
   tasks.forEach((task) => {
@@ -50,34 +52,34 @@ function displaytasks(){
 </div>`;
   });
   list.innerHTML = taskgenerator;
-  const btn=document.querySelectorAll('.content');
-  btn.forEach((b) =>{
-      const menu = b.parentElement.parentElement.children[1];
-      const can = b.parentElement.parentElement.children[2];
-      let cv = b.value;
-      b.addEventListener('focus', () => {
-          menu.style.display = 'none';
-          can.style.display = 'block';
-      })
-      b.addEventListener('blur', () => {
-          menu.style.display = 'block';
-          can.style.display = 'none';  
-          if(b.value!=cv){
-              let i = 0;
-              while(i!=can.id){
-              i++;
-              }
-              tasks[i].description=b.value;
-              localStorage.setItem('tasks', JSON.stringify(tasks));
-          }
-      })
+  const btn = document.querySelectorAll('.content');
+  btn.forEach((b) => {
+    const menu = b.parentElement.parentElement.children[1];
+    const can = b.parentElement.parentElement.children[2];
+    const cv = b.value;
+    b.addEventListener('focus', () => {
+      menu.style.display = 'none';
+      can.style.display = 'block';
+    });
+    b.addEventListener('blur', () => {
+      menu.style.display = 'block';
+      can.style.display = 'none';
+      if (b.value !== cv) {
+        let i = 0;
+        while (i !== can.id) {
+          i++;
+        }
+        tasks[i].description = b.value;
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+      }
+    });
   });
   const trash = document.querySelectorAll('.trashcan');
-  trash.forEach((t) =>{
-      t.addEventListener('mousedown', () => deleteTask(t.id))
+  trash.forEach((t) => {
+    t.addEventListener('mousedown', () => deleteTask(t.id));
   });
 }
 
 displaytasks();
 
-export {Task, tasks, displaytasks};
+export { Task, tasks, displaytasks };
