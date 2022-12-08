@@ -31,21 +31,32 @@ body {
   width: 15px;
   height: 15px;
   align-self: center;
-  opacity: 0.7;
 }
 
 .add-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
   border-bottom: #d3d3d3 solid 1px;
   height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#form {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
 }
 
 .add-task {
   border: none;
   font-style: italic;
   font-size: 15px;
+  outline: none;
+}
+
+.submit-button {
+  background-color: transparent;
+  border: none;
 }
 
 .enter {
@@ -71,6 +82,11 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 45px;
+}
+
+.content {
+  border: none;
 }
 
 .clear-btn {
@@ -83,4 +99,13 @@ body {
   height: 35px;
   width: 30px;
   opacity: 0.6;
+  position: absolute;
+  right: 0;
+}
+
+.trashcan {
+  height: 25px;
+  width: 25px;
+  opacity: 0.6;
+  display: none;
 }
