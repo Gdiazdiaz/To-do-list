@@ -64,9 +64,9 @@ function displaytasks() {
     b.addEventListener('blur', () => {
       menu.style.display = 'block';
       can.style.display = 'none';
-      if (b.value !== cv) {
+      if (b.value != cv) {
         let i = 0;
-        while (i !== can.id) {
+        while (i != can.id) {
           i++;
         }
         tasks[i].description = b.value;

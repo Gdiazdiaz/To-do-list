@@ -17,7 +17,7 @@ function reAssingIndex() {
 
 function deleteTask(index) {
   let i = 0;
-  while (i !== index) {
+  while (i != index) {
     i++;
   }
   tasks.splice(i, 1);
