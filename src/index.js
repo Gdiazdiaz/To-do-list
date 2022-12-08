@@ -4,16 +4,18 @@
 /* eslint-disable eqeqeq */
 import './style.css';
 import { addTasks, deleteTask } from './functions.js';
+import { checkBox } from './checkbox.js';
 
 const list = document.querySelector('.list-container');
 const form = document.querySelector('#form');
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 class Task {
-  constructor(description = '', completed = false, index = 0) {
+  constructor(description = '', completed = false, index = 0, chbox='') {
     this.description = description;
     this.completed = completed;
     this.index = index;
+    this.chbox=chbox;
   }
 }
 
@@ -46,11 +48,11 @@ function displaytasks() {
   let taskgenerator = '';
   tasks.forEach((task) => {
     taskgenerator += `<div class="task">
-    <div class="content-div"><input class="checkbox" type="checkbox">
-    <input class="content" value="${task.description}"></div>
-    <svg class="item-menu" id="menu" xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" id="mainIconPathAttribute"></path> </svg>
-    <svg class="trashcan" id="${task.index}" xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" id="mainIconPathAttribute" fill="#737373"></path> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" id="mainIconPathAttribute" fill="#737373"></path> </svg>
-</div>`;
+      <div class="content-div"><input class="checkbox" name="${task.index}" type="checkbox" ${task.chbox}>
+      <input class="content ${task.completed}" value="${task.description}"></div>
+      <svg class="item-menu" id="menu" xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" id="mainIconPathAttribute"></path> </svg>
+      <svg class="trashcan" id="${task.index}" xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" id="mainIconPathAttribute" fill="#737373"></path> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" id="mainIconPathAttribute" fill="#737373"></path> </svg>
+  </div>`;
   });
   list.innerHTML = taskgenerator;
   const btn = document.querySelectorAll('.content');
@@ -79,6 +81,19 @@ function displaytasks() {
   trash.forEach((t) => {
     t.addEventListener('mousedown', () => deleteTask(t.id));
   });
+  const chbox = document.querySelectorAll('.checkbox');
+    chbox.forEach((box) =>{
+      box.addEventListener('change', () => {
+        checkBox(box);
+        const ch = box.parentElement.children[1];
+        if(box.checked){
+          ch.style.textDecoration = 'line-through';
+        }
+        else{
+          ch.style.textDecoration = 'none';
+        }
+      })
+    })
 }
 
 displaytasks();
