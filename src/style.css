@@ -87,6 +87,7 @@ body {
 
 .content {
   border: none;
+  text-decoration: none;
 }
 
 .clear-btn {
@@ -108,4 +109,13 @@ body {
   width: 25px;
   opacity: 0.6;
   display: none;
+}
+
+.false {
+  text-decoration: none;
+}
+
+.true {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
